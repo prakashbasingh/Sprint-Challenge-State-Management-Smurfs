@@ -1,16 +1,14 @@
 
 
-const initialState = [
-    {
-      name: "Brainey",
-      age: 200,
-      height: "5cm",
-      id: 0
-    }
-  ];
+const initialState = {
+  isFetching: false,
+  smurfs: [],
+  errors: ''
+
+}
 
 
-export const smurfReducer = (state = initialState, action) => {
+export const SmurfReducer = (state = initialState, action) => {
 
     switch(action.type) {
 
