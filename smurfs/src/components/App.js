@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
-import styled from 'styled-components'
 
 import SmurfForm from './smurfForm'
+import SmurfList from './smurfList'
+
 
 
 
@@ -17,6 +18,7 @@ function App () {
         <div>Have fun!</div>
 
         <SmurfForm/>
+        <SmurfList/>
 
 
 

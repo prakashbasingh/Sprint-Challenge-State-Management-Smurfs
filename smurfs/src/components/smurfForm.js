@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { connect } from 'react-redux';
+import {fetchSmurfInfo, postSmurfInfo} from '../actions/smurfAction'
 
 
 const smurfInitialState = {
@@ -10,8 +11,7 @@ const smurfInitialState = {
 
 
 
-const SmurfForm = props => {
-    // console.log(props, 'WWWHHHAAATTT we have here????')
+const SmurfForm = (props) => {
 
     const [smurfInfo, setSmurfInfo] = useState(smurfInitialState)
     
@@ -19,8 +19,8 @@ const SmurfForm = props => {
         setSmurfInfo ({
             ...smurfInfo,
             [e.target.name]: e.target.value,
-        },console.log(smurfInfo, 'What data we have here???!!!!!?????!!!!!')
-        ); 
+        }); 
+        console.log(smurfInfo, 'What data we have here???!!!!!?????!!!!!')
     }
 
     const submitSmurfForm = e => {
@@ -31,14 +31,11 @@ const SmurfForm = props => {
             height: smurfInfo.heightHeight,
             id: Date.now()
         };console.log(newSmurfInfo, 'What newSmurfInfo data we have here???!!!!!?????!!!!!')
-        setSmurfInfo(smurfInitialState)
+        props.postSmurfInfo(newSmurfInfo);
+
+        setSmurfInfo(smurfInitialState);
+
     }
-
-  
-
-
-
-
 
 
     return(
@@ -62,22 +59,23 @@ const SmurfForm = props => {
 
 
         </form>
-
-
+        
 
     )
-
-
 }
+// export default SmurfForm
+
+
+
 const mapStateToProps = (state) => {
     console.log({state}, "what we have here in mSTP????????")
     return {
         isFetching: state.isFetching,
         smurfs: state.smurf,
-        error: state.error
+        errors: state.errors
     };
 };
-export default connect(mapStateToProps, {})(SmurfForm);
+export default connect(mapStateToProps, {fetchSmurfInfo, postSmurfInfo})(SmurfForm);
 
 
 
